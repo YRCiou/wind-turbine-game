@@ -119,6 +119,69 @@ svg{max-width:100%;height:auto;display:block}
 .cert h3{font-size:1.6rem;margin:4px 0;color:var(--sea-d)}
 .cert .name{font-size:1.8rem;font-weight:900;border-bottom:2px solid var(--ink);display:inline-block;min-width:160px;margin:8px 0}
 input[type=text]{font:inherit;padding:8px 12px;border-radius:10px;border:2px solid var(--line);width:100%;max-width:260px}
+/* ---- 探究任務 ---- */
+.book{max-width:900px;margin:0 auto}
+.bookbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.bookbar .sp{flex:1}
+.dots{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:12px 0 4px}
+.dots button{width:30px;height:30px;border-radius:50%;border:2px solid var(--line);background:#fff;font-weight:700;font-size:.8rem;color:var(--muted);padding:0}
+.dots button.on{background:var(--sea);border-color:var(--sea);color:#fff}
+.dots button.read{border-color:var(--leaf)}
+.scenebox{max-width:calc(58vh * 16 / 9);margin:0 auto;position:relative;border-radius:18px;overflow:hidden;box-shadow:var(--shadow);background:#dff0fa}
+.scenebox svg{width:100%}
+.hs{position:absolute;width:36px;height:36px;margin:-18px 0 0 -18px;border-radius:50%;border:3px solid #fff;background:rgba(255,193,69,.9);color:#5a3d00;font-weight:900;font-size:.95rem;padding:0;animation:pulse 1.6s infinite;z-index:2}
+.hs.seen{background:rgba(63,163,77,.92);color:#fff;animation:none}
+.hs.cur{outline:3px solid var(--sea-d)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,193,69,.85)}70%{box-shadow:0 0 0 18px rgba(255,193,69,0)}100%{box-shadow:0 0 0 0 rgba(255,193,69,0)}}
+.ptext{background:var(--card);border-radius:18px;padding:16px 18px;margin-top:12px;box-shadow:var(--shadow)}
+.ptext h2{margin:0 0 6px;font-size:1.35rem;font-weight:900;color:var(--sea-d)}
+.ptext p{margin:0 0 8px;font-size:1.05rem}
+.ptext .hint{font-size:.9rem;color:var(--muted)}
+.bubble{margin-top:10px;background:#fff8e6;border-left:6px solid var(--sun);border-radius:10px;padding:10px 12px;min-height:3em}
+.bubble b{color:#8a5a00}
+.pctrl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:12px}
+.pctrl input[type=range]{flex:1 1 200px;accent-color:var(--sea)}
+.pnav{display:flex;justify-content:space-between;gap:10px;margin-top:14px}
+.flips{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;width:100%}
+.flip{min-height:96px;border:2px solid var(--line);border-radius:14px;background:#fff;padding:10px;font-weight:700;text-align:center}
+.flip.pro{border-color:var(--leaf);background:#eef8ef}
+.flip.con{border-color:#e39b3b;background:#fff4e6}
+.flip small{display:block;font-weight:400;color:var(--muted);margin-top:4px}
+.review{font-size:.85rem;padding:6px 12px;margin-left:6px}
+.poe{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.poe span{border-radius:999px;padding:2px 12px;font-size:.85rem;font-weight:700;background:#eef3f6;color:#8a9aa3}
+.poe span.on{background:var(--sea);color:#fff}
+.poe span.done{background:#dff2e1;color:var(--leaf)}
+.kind{display:inline-block;font-size:.8rem;background:var(--sun);color:#3a2a00;border-radius:8px;padding:1px 8px;margin-left:8px;vertical-align:middle}
+.hook{font-size:1.15rem;font-weight:700;margin:4px 0 10px}
+.keypt{margin-top:12px;border:2px solid var(--leaf);border-radius:14px;padding:10px 14px;background:#f5fbf5}
+.keypt::before{content:"💡 重點整理";display:block;font-weight:900;color:var(--leaf);margin-bottom:4px}
+.keypt p{margin:0 0 6px}
+.opt.sel{border-color:var(--sun);background:#fff8e6}
+#afterPred.hide{display:none}
+.phase1 .keypt{display:none}
+.locked .scenebox::after{content:"🔒 先猜猜看，答完就能動手試";position:absolute;inset:0;display:grid;place-items:center;background:rgba(255,255,255,.55);font-weight:900;color:var(--sea-d);font-size:1.1rem;z-index:3}
+.step{display:inline-block;background:var(--sea);color:#fff;border-radius:999px;padding:1px 10px;font-size:.8rem;font-weight:700;margin-right:6px}
+/* 場景動畫 */
+.scene .wind{fill:none;stroke:#fff;stroke-width:4;stroke-linecap:round;stroke-dasharray:22 100;animation:wind var(--wd,2.2s) linear infinite;opacity:.9}
+@keyframes wind{from{stroke-dashoffset:22}to{stroke-dashoffset:-100}}
+.scene .loop{fill:none;stroke:#fff;stroke-width:7;stroke-linecap:round;stroke-dasharray:5 5;animation:loop 1.2s linear infinite}
+.scene .loop.rev{animation-direction:reverse}
+@keyframes loop{from{stroke-dashoffset:0}to{stroke-dashoffset:-10}}
+.scene .flow{fill:none;stroke:#ffc145;stroke-width:5;stroke-linecap:round;stroke-dasharray:3 5;animation:loop var(--fd,.8s) linear infinite}
+.scene .cloud{animation:drift 40s linear infinite}
+@keyframes drift{from{transform:translateX(-260px)}to{transform:translateX(900px)}}
+.scene .sway{transform-box:fill-box;transform-origin:50% 100%;animation:sway 1.4s ease-in-out infinite alternate}
+@keyframes sway{from{transform:rotate(-7deg)}to{transform:rotate(3deg)}}
+.scene .hatfly{transform-box:fill-box;transform-origin:center;animation:hat 4.5s ease-in infinite}
+@keyframes hat{0%,15%{transform:translate(0,0) rotate(0);opacity:1}70%{transform:translate(250px,-110px) rotate(260deg);opacity:1}100%{transform:translate(420px,-80px) rotate(420deg);opacity:0}}
+.scene .bird{animation:bird 9s linear infinite}
+@keyframes bird{from{transform:translateX(-120px)}to{transform:translateX(320px)}}
+.scene .pop{transform-box:fill-box;transform-origin:center;animation:pop .35s backwards}
+@keyframes pop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+.scene .bob{animation:bob 2s ease-in-out infinite alternate}
+@keyframes bob{from{transform:translateY(0)}to{transform:translateY(-8px)}}
+@media (prefers-reduced-motion: reduce){.scene *{animation-duration:6s!important}.hs{animation:none}}
 footer{text-align:center;color:#8a9aa3;font-size:.8rem;padding:24px 16px}
 footer a{color:var(--sea)}
 .hide{display:none!important}
@@ -129,6 +192,7 @@ footer a{color:var(--sea)}
   .two svg.tb{max-width:240px;margin:0 auto}
   .lab svg.tb{max-width:170px;margin:0 auto}
   .chain .arr{display:none}
+  .hs{width:26px;height:26px;margin:-13px 0 0 -13px;font-size:.75rem;border-width:2px}
 }
 @media print{
   body *{visibility:hidden}
@@ -150,16 +214,20 @@ footer a{color:var(--sea)}
     <div class="hero">
       <div>
         <h2>歡迎來到海風小鎮！</h2>
-        <p>小鎮決定在海邊蓋風力發電機。你是新來的「小工程師」，要通過 6 道關卡，才能拿到工程師證書。</p>
-        <p>每一關答錯越少，星星越多：全對 ⭐⭐⭐、錯 1–2 次 ⭐⭐、其他 ⭐。</p>
+        <p>小鎮決定在海邊蓋風力發電機。先完成 10 個探究任務：自己猜、動手試、再想想，弄懂「風怎麼變成電」，再挑戰 6 道關卡，拿到小工程師證書！</p>
+        <p><span class="step">1</span>探究任務・先猜再試 <span class="step" style="margin-left:6px">2</span>再闖關・拿星星</p>
         <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
-          <button class="btn sun" id="goNext">▶ 開始闖關</button>
+          <button class="btn sun" id="goBook">🔬 開始探究任務</button>
+          <button class="btn" id="goNext">▶ 開始闖關</button>
           <button class="btn ghost" id="goFree">🧪 自由實驗室</button>
         </div>
+        <p class="hint" id="bookProg" style="margin-top:8px;font-size:.9rem"></p>
       </div>
       <div class="heroimg" id="heroTurbine"></div>
     </div>
 
+    <h3 style="margin:22px 0 0"><span class="step">2</span>闖關評量</h3>
+    <p style="margin:2px 0 0;color:var(--muted);font-size:.92rem">每一關答錯越少，星星越多：全對 ⭐⭐⭐、錯 1–2 次 ⭐⭐、其他 ⭐。</p>
     <div class="grid" id="levelGrid"></div>
 
     <h3 style="margin:22px 0 10px">🔍 這是真的嗎？</h3>
@@ -172,6 +240,30 @@ footer a{color:var(--sea)}
 
     <h3 style="margin:22px 0 10px">👩‍🏫 給老師</h3>
     <div class="info"><p>這是把紙本「風力發電機學習評量」改成的互動版本：L1 構造、L2 能量轉換、L3 選址與環境、L4 變因實驗、L5 優缺點、L6 總評量。星星只存在學生自己的瀏覽器。想讓學生直接跳關，網址後面加上 <code>?all=1</code>。</p></div>
+  </section>
+
+  <!-- 探究任務 -->
+  <section id="book" class="hide book">
+    <div class="bookbar">
+      <button class="btn ghost" id="bookHome">← 首頁</button>
+      <span class="sp"></span>
+      <button class="btn ghost" id="readBtn">🔊 讀給我聽</button>
+    </div>
+    <div class="scenebox" id="scenebox"><div id="sceneSvg"></div><div id="hsLayer"></div></div>
+    <div class="ptext">
+      <div class="poe" id="poe"></div>
+      <h2 id="pTitle"></h2>
+      <p class="hook" id="pHook"></p>
+      <div id="predict"></div>
+      <div id="afterPred">
+        <p class="hint" id="pHint"></p>
+        <div class="pctrl" id="pageCtrl"></div>
+        <div class="bubble" id="bubble"></div>
+        <div class="keypt" id="pBody"></div>
+      </div>
+    </div>
+    <div class="dots" id="dots"></div>
+    <div class="pnav"><button class="btn ghost" id="prevP">◀ 上一頁</button><button class="btn" id="nextP">下一頁 ▶</button></div>
   </section>
 
   <!-- 關卡 -->
@@ -214,12 +306,25 @@ function toast(msg, good){ const t = $('#toast'); if(!t) return; t.textContent =
 
 /* ---------- 風機 SVG ---------- */
 let rotors = [];
-function turbineSVG(opts = {}){
-  const blades = opts.blades || 3, id = 'r' + Math.random().toString(36).slice(2,7);
+const uid = () => 'r' + Math.random().toString(36).slice(2,8);
+/* 風機本體（區域座標 300×400，輪轂在 145,110），可放進任何場景 */
+function turbineParts(id, blades = 3){
   let bl = '';
   for (let i=0;i<blades;i++){
     bl += `<path transform="rotate(${360/blades*i} 145 110)" d="M145 110 C153 92 153 52 148 20 L142 20 C138 52 139 92 145 110Z" fill="#fff" stroke="#8aa6b3" stroke-width="2"/>`;
   }
+  return `<path d="M138 360 L145 118 L155 118 L162 360Z" fill="#f2f6f8" stroke="#8aa6b3" stroke-width="2"/>
+    <rect x="108" y="358" width="84" height="20" rx="4" fill="#9aa5ab" stroke="#6d7a80" stroke-width="2"/>
+    <rect x="145" y="98" width="70" height="25" rx="10" fill="#eef3f6" stroke="#8aa6b3" stroke-width="2"/>
+    <g class="rotor" id="${id}">${bl}</g>
+    <circle cx="145" cy="110" r="11" fill="#fff" stroke="#8aa6b3" stroke-width="2"/>`;
+}
+function addRotor(id, speed = 1.2, cx = 145, cy = 110){
+  const el = document.getElementById(id); if (!el) return null;
+  const r = {el, angle: 0, speed, target: speed, cx, cy}; rotors.push(r); return r;
+}
+function turbineSVG(opts = {}){
+  const blades = opts.blades || 3, id = uid();
   let marks = '';
   if (opts.marks){
     const M = [[1,147,48,236,40],[2,145,110,60,96],[3,198,110,256,150],[4,150,240,232,232],[5,150,368,58,348]];
@@ -233,51 +338,58 @@ function turbineSVG(opts = {}){
     <rect x="0" y="0" width="300" height="378" fill="#dff0fa" rx="16"/>
     <circle cx="255" cy="45" r="20" fill="#ffd66b"/>
     <path d="M0 330 Q75 312 150 330 T300 330 V400 H0Z" fill="#3e9bb0"/>
-    <path d="M138 360 L145 118 L155 118 L162 360Z" fill="#f2f6f8" stroke="#8aa6b3" stroke-width="2"/>
-    <rect x="108" y="358" width="84" height="20" rx="4" fill="#9aa5ab" stroke="#6d7a80" stroke-width="2"/>
-    <rect x="145" y="98" width="70" height="25" rx="10" fill="#eef3f6" stroke="#8aa6b3" stroke-width="2"/>
-    <g class="rotor" id="${id}">${bl}</g>
-    <circle cx="145" cy="110" r="11" fill="#fff" stroke="#8aa6b3" stroke-width="2"/>
+    ${turbineParts(id, blades)}
     ${marks}
   </svg>`;
   return {svg, id};
 }
 function mountTurbine(el, opts = {}){
   const t = turbineSVG(opts); el.innerHTML = t.svg;
-  const r = {el: document.getElementById(t.id), angle: 0, speed: opts.speed ?? 1.2};
-  rotors.push(r); return r;
+  return addRotor(t.id, opts.speed ?? 1.2);
 }
+const reduceMotion = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 (function spin(){
   rotors = rotors.filter(r => document.body.contains(r.el));
-  for (const r of rotors){ r.angle = (r.angle + r.speed) % 360; r.el.setAttribute('transform', `rotate(${r.angle} 145 110)`); }
+  for (const r of rotors){
+    r.speed += (r.target - r.speed) * 0.06;
+    r.angle = (r.angle + r.speed * (reduceMotion ? 0.3 : 1)) % 360;
+    r.el.setAttribute('transform', `rotate(${r.angle.toFixed(2)} ${r.cx} ${r.cy})`);
+  }
   requestAnimationFrame(spin);
 })();
 
 /* ---------- 首頁 ---------- */
-function isUnlocked(id){ return unlockAll || id === 1 || (stars[id-1] || 0) > 0; }
+function isUnlocked(id){ return unlockAll || (id === 1 ? book.done : (stars[id-1] || 0) > 0); }
 function renderHome(){
-  $('#home').classList.remove('hide'); $('#level').classList.add('hide');
+  stopSpeak();
+  $('#home').classList.remove('hide'); $('#level').classList.add('hide'); $('#book').classList.add('hide');
+  $('#bookProg').textContent = book.done ? `✅ 探究任務已完成（${PAGES.length} 個），可以隨時回去複習。`
+    : `🔬 探究進度：${book.max} / ${PAGES.length}　全部完成後才會解鎖第 1 關喔！`;
   const total = Object.values(stars).reduce((a,b)=>a+b,0);
   $('#totalStars').textContent = `⭐ ${total} / 18`;
   $('#levelGrid').innerHTML = LEVELS.map(l => {
     const ok = isUnlocked(l.id), s = stars[l.id] || 0;
     return `<button class="lv" data-id="${l.id}" ${ok?'':'disabled'}>
       <span class="st">${ok ? (s ? starStr(s) : '') : '🔒'}</span>
-      <span class="no">第 ${l.id} 關</span><span class="nm">${l.name}</span><span class="ds">${l.desc}</span></button>`;
+      <span class="no">第 ${l.id} 關</span><span class="nm">${l.name}</span><span class="ds">${ok ? l.desc : (l.id === 1 ? '先完成探究任務才能開始' : '先完成上一關')}</span></button>`;
   }).join('');
   document.querySelectorAll('.lv').forEach(b => b.onclick = () => openLevel(+b.dataset.id));
   if (!$('#heroTurbine').firstChild) mountTurbine($('#heroTurbine'), {speed: 1.5});
   window.scrollTo(0,0);
 }
 function openLevel(id, free){
+  stopSpeak();
   current = id; mistakes = 0;
   $('#mistakePill').textContent = '❌ 0';
   $('#mistakePill').classList.toggle('hide', !!free);
-  $('#home').classList.add('hide'); $('#level').classList.remove('hide');
+  $('#home').classList.add('hide'); $('#book').classList.add('hide'); $('#level').classList.remove('hide');
   const stage = $('#stage'); stage.innerHTML = '';
   if (free) L4(stage, true); else LEVELS[id-1].fn(stage);
+  const rv = REVIEW[free ? 4 : id], h2 = stage.querySelector('h2');
+  if (rv && h2) h2.insertAdjacentHTML('beforeend', `<button class="btn ghost review" onclick="openBook(${rv[0]})">📖 複習：${rv[1]}</button>`);
   window.scrollTo(0,0);
 }
+const REVIEW = {1:[3,'認識風機'], 2:[4,'能量大接力'], 3:[8,'蓋在哪裡'], 4:[6,'風速與發電量'], 5:[9,'好處與難題'], 6:[1,'從頭讀一遍']};
 function finish(extraMsg){
   const s = mistakes === 0 ? 3 : mistakes <= 2 ? 2 : 1;
   stars[current] = Math.max(stars[current] || 0, s); saveStars();
@@ -292,7 +404,11 @@ function modal(html){ $('#mbox').innerHTML = html; $('#modal').classList.add('on
 function closeModal(){ $('#modal').classList.remove('on'); }
 $('#backHome').onclick = renderHome;
 $('#goFree').onclick = () => { current = 0; openLevel(4, true); };
-$('#goNext').onclick = () => { const n = LEVELS.find(l => isUnlocked(l.id) && !stars[l.id]); openLevel(n ? n.id : 1); };
+$('#goNext').onclick = () => {
+  if (!isUnlocked(1)){ openBook(Math.min(book.max + 1, PAGES.length)); return; }
+  const n = LEVELS.find(l => isUnlocked(l.id) && !stars[l.id]); openLevel(n ? n.id : 1);
+};
+$('#goBook').onclick = () => openBook(book.done ? 1 : Math.min(book.max + 1, PAGES.length));
 
 /* ---------- L1 構造拼圖 ---------- */
 function L1(st){
@@ -436,7 +552,7 @@ function L4(st, free){
       : v <= 25 ? ['🔋 已達額定功率，滿載發電','#1f7a8c']
       : ['🛑 風太強！煞車停機保護中','#e0574f'];
     $('#stxt').textContent = s[0]; $('#stxt').style.color = s[1];
-    rotor.speed = v > 25 ? 0 : v < 3 ? v * 0.4 : Math.min(v, 12) * 1.1;
+    rotor.target = v > 25 ? 0 : v < 3 ? v * 0.4 : Math.min(v, 12) * 1.1;
     drawCurve();
   }
   function drawCurve(){
@@ -559,8 +675,448 @@ function L6(st){
   show();
 }
 
+/* =========================================================
+   探究任務：先猜、再試、後解釋
+   ========================================================= */
+const BOOKKEY = 'windgame.book.v1';
+const book = {max: 0, done: false};
+try { Object.assign(book, JSON.parse(localStorage.getItem(BOOKKEY) || '{}')); } catch(e) {}
+function saveBook(){ try { localStorage.setItem(BOOKKEY, JSON.stringify(book)); } catch(e) {} }
+
+/* --- 場景小零件 --- */
+const W = 800, H = 450;
+const svgOpen = (extra = '') => `<svg class="scene" viewBox="0 0 ${W} ${H}" role="img" ${extra}>`;
+const skyBg = (a = '#bfe3f5', b = '#eef8fd') => `<defs><linearGradient id="sky${a.slice(1)}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient></defs><rect width="${W}" height="${H}" fill="url(#sky${a.slice(1)})"/>`;
+const sun = (x, y, r = 34) => `<g class="bob"><circle cx="${x}" cy="${y}" r="${r+14}" fill="#ffe9a8" opacity=".6"/><circle cx="${x}" cy="${y}" r="${r}" fill="#ffd166"/></g>`;
+const cloud = (x, y, s = 1, delay = 0) => `<g class="cloud" style="animation-delay:${delay}s"><g transform="translate(${x} ${y}) scale(${s})" fill="#fff" opacity=".95"><ellipse cx="0" cy="0" rx="38" ry="20"/><ellipse cx="30" cy="-10" rx="30" ry="22"/><ellipse cx="60" cy="2" rx="32" ry="18"/></g></g>`;
+const windLine = (x, y, len, delay = 0, color = '#fff') => `<path class="wind" pathLength="100" style="animation-delay:${delay}s;stroke:${color}" d="M${x} ${y} q${len/6} -10 ${len/3} 0 t${len/3} 0 t${len/3} 0"/>`;
+const windField = (rows, x0, x1, color) => rows.map((y, i) => windLine(x0 + (i % 2) * 40, y, x1 - x0, -i * 0.55, color)).join('');
+const turbineAt = (id, x, y, s, blades = 3) => `<g transform="translate(${x} ${y}) scale(${s})">${turbineParts(id, blades)}</g>`;
+function kid(x, y, s = 1, helmet = false){
+  return `<g transform="translate(${x} ${y}) scale(${s})">
+    <rect x="-15" y="-60" width="11" height="60" rx="5" fill="#2f4858"/><rect x="4" y="-60" width="11" height="60" rx="5" fill="#2f4858"/>
+    <rect x="-25" y="-120" width="50" height="66" rx="18" fill="#ff8c42"/>
+    <circle cx="0" cy="-144" r="28" fill="#ffd9b8"/>
+    <path d="M-29 -146 Q-27 -176 0 -174 Q27 -176 29 -146 Q12 -162 -29 -146Z" fill="#3b2a20"/>
+    <circle cx="-9" cy="-143" r="3.2" fill="#222"/><circle cx="9" cy="-143" r="3.2" fill="#222"/>
+    <circle cx="-17" cy="-133" r="5" fill="#ffb3a1" opacity=".7"/><circle cx="17" cy="-133" r="5" fill="#ffb3a1" opacity=".7"/>
+    <path d="M-8 -131 Q0 -124 8 -131" stroke="#222" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    ${helmet ? '<path d="M-31 -152 Q-31 -186 0 -186 Q31 -186 31 -152Z" fill="#ffc145" stroke="#c9902a" stroke-width="2"/><rect x="-35" y="-155" width="70" height="7" rx="3" fill="#ffc145" stroke="#c9902a" stroke-width="2"/>' : ''}
+  </g>`;
+}
+function grandpa(x, y, s = 1){
+  return `<g transform="translate(${x} ${y}) scale(${s})">
+    <rect x="-17" y="-70" width="13" height="70" rx="5" fill="#33414a"/><rect x="4" y="-70" width="13" height="70" rx="5" fill="#33414a"/>
+    <rect x="-30" y="-142" width="60" height="80" rx="20" fill="#2f7fbf"/>
+    <rect x="-30" y="-120" width="60" height="7" fill="#ffd166"/>
+    <circle cx="0" cy="-168" r="30" fill="#f6cfaa"/>
+    <path d="M-30 -168 Q-34 -150 -22 -146 M30 -168 Q34 -150 22 -146" stroke="#ddd" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <circle cx="-11" cy="-168" r="8" fill="none" stroke="#333" stroke-width="2.5"/><circle cx="11" cy="-168" r="8" fill="none" stroke="#333" stroke-width="2.5"/>
+    <path d="M-3 -168 H3" stroke="#333" stroke-width="2.5"/>
+    <path d="M-12 -152 Q0 -144 12 -152" stroke="#eee" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M-33 -178 Q-33 -210 0 -210 Q33 -210 33 -178Z" fill="#fff" stroke="#9aa8b0" stroke-width="2"/>
+    <rect x="-37" y="-181" width="74" height="7" rx="3" fill="#fff" stroke="#9aa8b0" stroke-width="2"/>
+  </g>`;
+}
+const pinwheel = (id, x, y) => `<line x1="${x}" y1="${y}" x2="${x-6}" y2="${y+90}" stroke="#8a6a4a" stroke-width="5" stroke-linecap="round"/>
+  <g transform="translate(${x} ${y})"><g id="${id}">
+  ${['#ff6b6b','#ffd166','#4cc9f0','#80ed99'].map((c,i)=>`<path transform="rotate(${i*90})" d="M0 0 L0 -34 Q20 -32 26 -14Z" fill="${c}" stroke="#fff" stroke-width="2"/>`).join('')}
+  </g><circle r="5" fill="#fff" stroke="#999"/></g>`;
+const house = (x, y, wid) => `<g transform="translate(${x} ${y})"><rect x="-32" y="-52" width="64" height="52" fill="#fff5e6" stroke="#b8a48a" stroke-width="2"/>
+  <path d="M-40 -50 L0 -84 L40 -50Z" fill="#d9644a"/><rect id="${wid}" x="-20" y="-40" width="18" height="18" fill="#5b6b75" class="win"/><rect id="${wid}b" x="4" y="-40" width="18" height="18" fill="#5b6b75" class="win"/>
+  <rect x="-6" y="-22" width="14" height="22" fill="#a5735a"/></g>`;
+function gear(r, teeth, fill){
+  let d = '';
+  for (let i = 0; i < teeth * 2; i++){
+    const a = Math.PI * i / teeth, rr = i % 2 ? r : r + 8;
+    const a2 = Math.PI * (i + 1) / teeth;
+    d += (i ? 'L' : 'M') + (rr*Math.cos(a)).toFixed(1) + ' ' + (rr*Math.sin(a)).toFixed(1) + 'L' + (rr*Math.cos(a2)).toFixed(1) + ' ' + (rr*Math.sin(a2)).toFixed(1);
+  }
+  return `<path d="${d}Z" fill="${fill}" stroke="#5c6f7a" stroke-width="2"/><circle r="${r*0.3}" fill="#fff" stroke="#5c6f7a" stroke-width="2"/>`;
+}
+const label = (x, y, t, bg = '#fff', fg = '#14525e', fs = 16) => {
+  const w = [...t].reduce((a, c) => a + (c.charCodeAt(0) > 255 ? fs : fs * 0.6), 0) + 18;
+  return `<g transform="translate(${x} ${y})"><rect x="${-w/2}" y="-15" width="${w}" height="28" rx="14" fill="${bg}" opacity=".95"/><text y="5" text-anchor="middle" font-size="${fs}" font-weight="700" fill="${fg}">${t}</text></g>`;
+};
+
+/* --- 10 頁內容 --- */
+const PAGES = [
+{ // 1
+  t: '1. 會推人的風',
+  p: `<p>小安住在海邊的「海風小鎮」。今天風好大，<b>咻——</b>帽子一下子就被吹跑了！</p><p>戴著安全帽的風伯伯笑著說：「看到了嗎？<b>風是有力氣的</b>。我們可以借風的力氣來發電喔！」</p>`,
+  hint: '👆 點點畫面上發光的圓圈，再按住下面的按鈕吹吹風車。',
+  hs: [[18,28,'風','風就是「流動的空氣」。會動的東西都帶有一種能量，叫做<b>動能</b>。'],[50,40,'帽子','帽子被吹走，代表風真的有力量，可以推動東西！'],[57,55,'風車玩具','風推動風車的葉片，讓它轉起來。風越大，轉得越快。'],[76,46,'風伯伯','風伯伯是風力發電工程師，他會帶你認識風力發電機。']],
+  scene: s => `${svgOpen()}${skyBg()}${sun(690,70)}${cloud(80,70,1,-8)}${cloud(380,50,.8,-24)}
+    <rect y="300" width="${W}" height="150" fill="#4fb3c8"/><path d="M0 330 Q200 310 400 335 T800 340 V450 H0Z" fill="#f2d9a4"/>
+    <path d="M110 380 Q104 300 122 240" stroke="#8a5a3b" stroke-width="14" fill="none" stroke-linecap="round"/>
+    <g class="sway"><ellipse cx="122" cy="220" rx="62" ry="30" fill="#3fa34d"/><ellipse cx="90" cy="240" rx="40" ry="18" fill="#56b864"/><ellipse cx="160" cy="236" rx="40" ry="18" fill="#56b864"/></g>
+    ${kid(400,410,1.1)}<line x1="425" y1="300" x2="452" y2="270" stroke="#ff8c42" stroke-width="12" stroke-linecap="round"/>
+    ${pinwheel('pw1',458,248)}
+    <g class="hatfly"><ellipse cx="400" cy="214" rx="36" ry="7" fill="#e85d4f"/><path d="M376 214 Q376 186 400 186 Q424 186 424 214Z" fill="#e85d4f"/></g>
+    ${grandpa(610,410,1.05)}
+    ${windField([110,160,215,265],-40,330)}</svg>`,
+  after(){ PAGE_STATE.pw = addRotor('pw1', 2, 0, 0); },
+  ctrl(box){
+    box.innerHTML = `<button class="btn sun" id="blow">🌬️ 按住我，用力吹風</button><span class="hint" id="blowTxt">放開手，風就變小。</span>`;
+    const b = $('#blow'), on = v => { PAGE_STATE.pw.target = v ? 20 : 2; $('#scenebox').style.setProperty('--wd', v ? '.7s' : '2.2s'); $('#blowTxt').textContent = v ? '呼～～風車轉得好快！' : '放開手，風就變小。'; };
+    b.onpointerdown = e => { e.preventDefault(); on(true); }; b.onpointerup = b.onpointerleave = b.onpointercancel = () => on(false);
+  }
+},
+{ // 2
+  t: '2. 風從哪裡來？',
+  p: `<p>風伯伯說：「風是<b>太陽</b>變出來的！」太陽把陸地和海一起曬熱，可是<b>陸地熱得快、海熱得慢</b>。</p><p>陸地上的空氣變熱、變輕，就往上升；海上比較涼的空氣馬上流過來補位——<b>空氣流動，就是風</b>！</p>`,
+  hint: '👆 切換「白天／晚上」，看看風的方向有什麼不一樣。',
+  hs: [[50,14,'太陽','太陽讓各地冷熱不一樣，冷熱不同，空氣就會流動，所以太陽是風的源頭。'],[75,36,'上升','比較熱的空氣比較輕，會往上升。'],[25,36,'下沉','比較涼的空氣比較重，會往下沉。'],[50,60,'吹向哪','白天風從海吹向陸地，叫做<b>海風</b>；晚上反過來，叫做<b>陸風</b>。']],
+  scene: (st = {night: false}) => {
+    const n = st.night;
+    return `${svgOpen()}${n ? skyBg('#1d2b4f','#3d4f7d') : skyBg()}
+    ${n ? '<circle cx="400" cy="62" r="30" fill="#f4f1c9"/><circle cx="414" cy="54" r="26" fill="#1d2b4f"/>' + [[90,40],[200,80],[620,50],[720,100],[300,30],[520,90]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="2.5" fill="#fff"/>`).join('') : sun(400,62)}
+    <rect y="300" width="400" height="150" fill="${n ? '#2c5d75' : '#4fb3c8'}"/>
+    <path d="M400 300 Q500 286 600 296 T800 290 V450 H400Z" fill="${n ? '#3b6b3f' : '#7cc46b'}"/>
+    ${house(560,330,'h2a')}${house(700,322,'h2b')}
+    <path class="loop ${n ? 'rev' : ''}" pathLength="100" d="M200 110 L200 255 Q200 275 220 275 L580 275 Q600 275 600 255 L600 110 Q600 90 580 90 L220 90 Q200 90 200 110"/>
+    ${label(200,190, n ? '比較暖的空氣上升 ⬆' : '涼空氣下沉 ⬇')}
+    ${label(600,190, n ? '涼空氣下沉 ⬇' : '熱空氣上升 ⬆')}
+    ${label(200,345, n ? '海：冷得慢' : '海：熱得慢', '#fff', '#14525e')}
+    ${label(600,370, n ? '陸地：冷得快' : '陸地：熱得快', '#fff', '#14525e')}
+    ${label(400,420, n ? '晚上吹「陸風」：從陸地吹向海 ←' : '白天吹「海風」：從海吹向陸地 →', '#ffc145', '#3a2a00', 18)}</svg>`;
+  },
+  ctrl(box){
+    box.innerHTML = `<div class="seg" style="flex:1;max-width:320px"><button class="on" data-n="0">☀️ 白天</button><button data-n="1">🌙 晚上</button></div>`;
+    box.querySelectorAll('button').forEach(b => b.onclick = () => {
+      box.querySelectorAll('button').forEach(x => x.classList.remove('on')); b.classList.add('on');
+      renderScene({night: b.dataset.n === '1'});
+      bubble(b.dataset.n === '1' ? '晚上陸地冷得比海快，所以空氣反過來流：風從<b>陸地吹向海</b>。' : '白天陸地熱得比海快，風從<b>海吹向陸地</b>。');
+    });
+  }
+},
+{ // 3
+  t: '3. 認識風力發電機',
+  p: `<p>海上站著一座好高的<b>風力發電機</b>！大型風機比好幾十層樓還高，一片葉片就比好幾節火車車廂連起來還長。</p><p>它有五個重要部位：<b>葉片、輪轂、機艙、塔架、基礎</b>。點點看它們在哪裡！</p>`,
+  hint: '👆 點 5 個發光圓圈認識部位，再按「打開機艙」看看裡面。',
+  hs: [[51,9,'葉片','<b>葉片</b>：被風推動而旋轉，負責「接住」風的能量。大多數風機有 3 片。'],[46,25,'輪轂','<b>輪轂</b>：葉片的根部都固定在這裡，把轉動傳進機艙。'],[60,25,'機艙','<b>機艙</b>：裡面有主軸、齒輪箱和發電機，是風機的「心臟」。'],[52,59,'塔架','<b>塔架</b>：把風機撐到高處，因為越高的地方風越大、越穩定。'],[52,88,'基礎','<b>基礎</b>：把風機牢牢固定在海床或地面上，颱風來也不會倒。']],
+  scene: (st = {open: false}) => `${svgOpen()}${skyBg()}${cloud(60,60,.9,-5)}${cloud(560,40,.7,-20)}
+    <rect y="330" width="${W}" height="120" fill="#3e9bb0"/><path d="M0 335 Q100 325 200 335 T400 335 T600 335 T800 335" stroke="#a9dde8" stroke-width="3" fill="none"/>
+    ${turbineAt('t3',250,-10,1.1)}
+    <g transform="translate(660 350)"><path d="M-40 0 L40 0 L28 18 L-28 18Z" fill="#e85d4f"/><rect x="-6" y="-36" width="4" height="36" fill="#555"/><path d="M-2 -36 L22 -14 L-2 -14Z" fill="#fff"/></g>
+    ${label(660,410,'小船（比比看大小）','#fff','#14525e',13)}
+    ${st.open ? `<path d="M470 112 L520 165" stroke="#14525e" stroke-width="2" stroke-dasharray="5 4"/>
+      <rect x="500" y="160" width="285" height="155" rx="14" fill="#fff" stroke="#14525e" stroke-width="2.5"/>
+      <text x="515" y="186" font-size="16" font-weight="900" fill="#14525e">🔍 機艙裡面</text>
+      <rect x="512" y="231" width="58" height="10" rx="4" fill="#8a9aa3"/>
+      <g transform="translate(590 236)"><g id="g3a">${gear(26,12,'#ffd166')}</g></g>
+      <g transform="translate(641 236)"><g id="g3b">${gear(13,6,'#ffb347')}</g></g>
+      <rect x="668" y="208" width="104" height="56" rx="10" fill="#cfe8f6" stroke="#1f7a8c" stroke-width="2"/>
+      <text x="720" y="243" text-anchor="middle" font-size="16" font-weight="900" fill="#14525e">⚡ 發電機</text>
+      <text x="540" y="290" text-anchor="middle" font-size="13" fill="#5c6f7a">主軸</text>
+      <text x="615" y="290" text-anchor="middle" font-size="13" fill="#5c6f7a">齒輪箱：轉更快</text>
+      <text x="720" y="290" text-anchor="middle" font-size="13" fill="#5c6f7a">轉動→電</text>` : ''}</svg>`,
+  after(st = {}){ addRotor('t3', 1.1); if (st.open){ addRotor('g3a', 1.1, 0, 0); addRotor('g3b', -2.2, 0, 0); } },
+  ctrl(box){
+    box.innerHTML = `<button class="btn sun" id="openN">🔍 打開機艙看看</button>`;
+    let open = false;
+    $('#openN').onclick = () => { open = !open; renderScene({open}); $('#openN').textContent = open ? '🔒 關上機艙' : '🔍 打開機艙看看';
+      if (open) bubble('葉片帶動<b>主軸</b>，<b>齒輪箱</b>把慢慢的轉動變得很快，再帶動<b>發電機</b>發電。（有些風機沒有齒輪箱，叫做「直驅式」。）'); };
+  }
+},
+{ // 4
+  t: '4. 能量大接力',
+  p: `<p>從風到電燈，能量像接力賽一樣一棒傳一棒：</p><p><b>① 風的動能 → ② 葉片轉動 → ③ 發電機產生電能 → ④ 電線、變電所 → ⑤ 家裡的電燈亮了！</b></p><p>能量不會憑空出現，只是<b>換了一種樣子</b>，這叫做「能量轉換」。</p>`,
+  hint: '👆 切換風的大小，看看有幾戶人家的燈會亮。',
+  hs: [[6,26,'①','<b>① 風的動能</b>：流動的空氣帶著能量吹過來。'],[16,13,'②','<b>② 葉片轉動</b>：風推動葉片，變成「轉動」的動能。'],[23,32,'③','<b>③ 發電機</b>：在機艙裡把轉動變成<b>電能</b>。'],[55,72,'④','<b>④ 變電所和電線</b>：把電整理好，沿著電線送出去。'],[82,62,'⑤','<b>⑤ 用電</b>：電送到家裡，電燈、冰箱、電腦都能用了！']],
+  scene: () => `${svgOpen()}${skyBg()}${cloud(300,50,.8,-12)}
+    <rect y="345" width="${W}" height="105" fill="#7cc46b"/>
+    <g id="w4">${windField([90,140,190],-60,110)}</g>
+    ${turbineAt('t4',20,60,.75)}
+    <path d="M132 345 V365 H435 V340" stroke="#8a6a4a" stroke-width="4" fill="none" stroke-dasharray="6 4"/>
+    <path id="f4a" class="flow" d="M132 345 V365 H435 V340"/>
+    <g transform="translate(435 300)"><rect x="-38" y="-10" width="76" height="50" rx="6" fill="#d8dee3" stroke="#6d7a80" stroke-width="2"/><path d="M-10 0 L4 12 L-6 14 L8 30" stroke="#ffc145" stroke-width="4" fill="none"/></g>
+    ${label(435,394,'變電所','#fff','#14525e',13)}
+    ${[520,620,720].map(x=>`<rect x="${x-3}" y="230" width="6" height="${115}" fill="#8a6a4a"/>`).join('')}
+    <path d="M470 300 Q495 232 520 236 L620 236 L720 236" stroke="#333" stroke-width="2" fill="none"/>
+    <path id="f4b" class="flow" d="M470 300 Q495 232 520 236 L620 236 L720 236"/>
+    ${house(570,345,'w4a')}${house(670,345,'w4b')}${house(760,345,'w4c')}</svg>`,
+  after(){ PAGE_STATE.r4 = addRotor('t4', 4); },
+  ctrl(box){
+    box.innerHTML = `<div class="seg" style="flex:1;max-width:420px"><button data-n="0">🍃 沒風</button><button data-n="1">🌬️ 微風</button><button class="on" data-n="2">💨 強風</button></div><span class="hint" id="lit4"></span>`;
+    const set = n => {
+      PAGE_STATE.r4.target = [0, 3, 9][n];
+      $('#w4').style.display = n ? '' : 'none'; $('#scenebox').style.setProperty('--wd', n === 2 ? '1s' : '2.4s');
+      ['#f4a','#f4b'].forEach(s => $(s).style.display = n ? '' : 'none');
+      ['w4a','w4b','w4c'].forEach((id, i) => { const on = i < [0, 1, 3][n]; ['', 'b'].forEach(k => $('#' + id + k).setAttribute('fill', on ? '#ffd166' : '#5b6b75')); });
+      $('#lit4').textContent = ['沒有風，葉片不轉，燈都不亮。', '風小小的，只夠讓 1 戶亮燈。', '風很強，3 戶都亮了！'][n];
+    };
+    box.querySelectorAll('button').forEach(b => b.onclick = () => { box.querySelectorAll('button').forEach(x => x.classList.remove('on')); b.classList.add('on'); set(+b.dataset.n); });
+    set(2);
+  }
+},
+{ // 5
+  t: '5. 發電機的秘密：磁鐵和線圈',
+  p: `<p>發電機裡藏著<b>磁鐵</b>和一圈一圈的<b>銅線圈</b>。只要讓磁鐵在線圈旁邊轉動，線圈裡就會產生電流！</p><p>這個神奇的現象叫做<b>「電磁感應」</b>。磁鐵轉得越快，產生的電越多，燈泡就越亮。</p>`,
+  hint: '👆 拉動滑桿，讓磁鐵轉快一點，看看燈泡的亮度。',
+  hs: [[41,51,'磁鐵','<b>磁鐵</b>：一端是 N 極、一端是 S 極。在風機裡，它跟著葉片一起轉。'],[27,51,'線圈','<b>銅線圈</b>：固定不動。磁鐵在旁邊轉動時，線圈裡就會產生電流。'],[78,30,'燈泡','<b>燈泡</b>：電流流過來就會亮。轉得越快，電越多，燈越亮。']],
+  scene: () => `${svgOpen()}${skyBg('#eaf3f8','#f8fbfd')}
+    <defs><radialGradient id="glow5"><stop offset="0" stop-color="#fff3b0"/><stop offset="1" stop-color="#ffd166" stop-opacity="0"/></radialGradient></defs>
+    <circle cx="330" cy="230" r="112" fill="none" stroke="#c7d6de" stroke-width="3" stroke-dasharray="6 6"/>
+    ${[200,420].map(x=>`<rect x="${x}" y="170" width="40" height="120" rx="10" fill="#d08a3a"/>${[0,1,2,3,4,5,6,7].map(i=>`<line x1="${x}" y1="${180+i*14}" x2="${x+40}" y2="${180+i*14}" stroke="#8a5a20" stroke-width="3"/>`).join('')}`).join('')}
+    <g transform="translate(0 0)"><g id="mag5">
+      <rect x="250" y="210" width="80" height="40" rx="6" fill="#e85d4f"/><rect x="330" y="210" width="80" height="40" rx="6" fill="#3b82c4"/>
+      <text x="290" y="238" text-anchor="middle" font-size="22" font-weight="900" fill="#fff">N</text><text x="370" y="238" text-anchor="middle" font-size="22" font-weight="900" fill="#fff">S</text></g></g>
+    <path d="M220 170 V80 H605 V170" stroke="#555" stroke-width="4" fill="none"/><path d="M440 170 V120 H645 V170" stroke="#555" stroke-width="4" fill="none"/>
+    <path id="f5a" class="flow" d="M220 170 V80 H605 V170"/><path id="f5b" class="flow" d="M645 170 V120 H440 V170"/>
+    <circle id="glow5c" cx="625" cy="135" r="95" fill="url(#glow5)" opacity="0"/>
+    <circle cx="625" cy="135" r="42" fill="#fffdf2" stroke="#9aa8b0" stroke-width="3"/>
+    <path d="M610 140 Q617 120 625 140 Q633 120 640 140" stroke="#c9902a" stroke-width="3" fill="none"/>
+    <rect x="600" y="172" width="50" height="28" rx="5" fill="#9aa5ab"/>
+    ${label(330,380,'磁鐵在線圈中間轉動','#fff','#14525e',15)}${label(625,250,'燈泡','#fff','#14525e',15)}</svg>`,
+  after(){ PAGE_STATE.m5 = addRotor('mag5', 0, 330, 230); },
+  ctrl(box){
+    box.innerHTML = `<label style="font-weight:700">轉動速度</label><input type="range" id="sp5" min="0" max="10" value="0"><span class="hint" id="t5">磁鐵沒在轉，燈不亮。</span>`;
+    const set = v => {
+      PAGE_STATE.m5.target = v * 1.6; $('#glow5c').setAttribute('opacity', (v / 10).toFixed(2));
+      ['#f5a','#f5b'].forEach(s => $(s).style.display = v ? '' : 'none'); $('#scenebox').style.setProperty('--fd', (1.6 - v * 0.12) + 's');
+      $('#t5').textContent = v === 0 ? '磁鐵沒在轉，燈不亮。' : v < 4 ? '轉得慢，燈微微亮。' : v < 8 ? '轉快一點，燈更亮了！' : '轉得超快，燈好亮！';
+    };
+    $('#sp5').oninput = e => set(+e.target.value); set(0);
+  }
+},
+{ // 6
+  t: '6. 風大一點，電多好多！',
+  p: `<p>小安問：「風速變 2 倍，電也變 2 倍嗎？」風伯伯搖搖頭：「比你想的還多！」</p><p>風速 2 倍時，<b>每秒吹過來的空氣變 2 倍</b>，而且<b>每一團空氣的力氣變 4 倍</b>，合起來大約是 <b>2×2×2＝8 倍</b>！</p>`,
+  hint: '👆 按 ×1、×2、×3，數數看能量方塊有幾個。',
+  hs: [[20,45,'風','風速越快，同樣時間裡吹過葉片的空氣越多。'],[70,45,'方塊','每個方塊代表一份能量：風速 ×2 → 2×2×2＝8 塊；風速 ×3 → 3×3×3＝27 塊。'],[88,78,'倍數','這叫做「風速的三次方」。所以工程師超在乎風大不大、穩不穩！']],
+  scene: (st = {n: 1}) => {
+    const n = st.n, w = 26, h = 15, ox = 560, oy = 210 - (3 - n) * 10;
+    const cubes = [];
+    for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) for (let k = 0; k < n; k++) cubes.push([i, j, k]);
+    cubes.sort((a, b) => (a[0] + a[1] + a[2]) - (b[0] + b[1] + b[2]));
+    const cs = cubes.map(([i, j, k], idx) => {
+      const px = ox + (i - j) * w, py = oy + (i + j) * h - k * 2 * h, P = a => a.map(p => p.join(',')).join(' ');
+      return `<g class="pop" style="animation-delay:${idx * 0.03}s"><polygon points="${P([[px,py],[px+w,py+h],[px,py+2*h],[px-w,py+h]])}" fill="#ffd66b" stroke="#a8761c"/>
+        <polygon points="${P([[px-w,py+h],[px,py+2*h],[px,py+4*h],[px-w,py+3*h]])}" fill="#f0a93b" stroke="#a8761c"/>
+        <polygon points="${P([[px,py+2*h],[px+w,py+h],[px+w,py+3*h],[px,py+4*h]])}" fill="#d98a1f" stroke="#a8761c"/></g>`;
+    }).join('');
+    const rows = [120,170,220,270,320].slice(0, n + 2);
+    return `${svgOpen(`style="--wd:${(2.4 / n).toFixed(2)}s"`)}${skyBg()}
+      <rect x="0" y="0" width="330" height="${H}" fill="#cfe8f6" opacity=".6"/>
+      ${windField(rows, -40, 320, '#1f7a8c')}
+      ${label(165,60,`風速 ×${n}`,'#1f7a8c','#fff',22)}
+      ${label(165,395,`吹來的空氣 ×${n}　每團力氣 ×${n*n}`,'#fff','#14525e',15)}
+      ${cs}
+      ${label(560,410,`能量約 ×${n*n*n}`,'#ffc145','#3a2a00',24)}</svg>`;
+  },
+  ctrl(box){
+    box.innerHTML = `<div class="seg" style="flex:1;max-width:360px">${[1,2,3].map(n=>`<button data-n="${n}" class="${n===1?'on':''}">風速 ×${n}</button>`).join('')}</div>`;
+    box.querySelectorAll('button').forEach(b => b.onclick = () => {
+      box.querySelectorAll('button').forEach(x => x.classList.remove('on')); b.classList.add('on');
+      const n = +b.dataset.n; renderScene({n}); bubble(`風速 ×${n} → 能量約 ${n}×${n}×${n}＝<b>${n*n*n} 倍</b>`);
+    });
+  }
+},
+{ // 7
+  t: '7. 風太小、風太大都不行',
+  p: `<p>風太小（大約每秒 <b>3 公尺</b>以下）推不動葉片，風機只好休息。</p><p>風太大也不行！<b>颱風</b>來時風速超過大約每秒 <b>25 公尺</b>，風機會自動<b>煞車停機</b>，保護自己不被吹壞。</p>`,
+  hint: '👆 拉動風速滑桿，從微風一路拉到颱風，看看風機怎麼反應。',
+  hs: [[46,20,'風機','風機會量風速，自己決定要發電、滿載還是停機。'],[18,22,'風伯伯說','看看風伯伯的對話框，他會告訴你現在的狀況。'],[50,84,'風速尺','灰色：太小　綠色：越轉越快　藍色：滿載　紅色：停機保護']],
+  scene: () => {
+    const x = v => 80 + v / 30 * 640;
+    return `${svgOpen()}${skyBg()}
+    <rect y="330" width="${W}" height="120" fill="#3e9bb0"/>
+    <g id="wind7">${windField([90,150,210,270],-40,820)}</g>
+    ${turbineAt('t7',250,0,.82)}
+    ${grandpa(110,330,.75)}
+    <g><rect x="20" y="20" width="250" height="78" rx="14" fill="#fff" stroke="#1f7a8c" stroke-width="2"/><path d="M90 98 L110 98 L100 118Z" fill="#fff" stroke="#1f7a8c" stroke-width="2"/>
+      <text id="say7" x="145" y="55" text-anchor="middle" font-size="17" font-weight="700" fill="#14525e"></text><text id="say7b" x="145" y="80" text-anchor="middle" font-size="14" fill="#5c6f7a"></text></g>
+    <g id="stop7" style="display:none"><polygon points="575,70 605,70 626,91 626,121 605,142 575,142 554,121 554,91" fill="#e0574f" stroke="#fff" stroke-width="4"/><text x="590" y="113" text-anchor="middle" font-size="22" font-weight="900" fill="#fff">停機</text></g>
+    <rect x="${x(0)}" y="372" width="${x(3)-x(0)}" height="18" fill="#b9c3c8"/><rect x="${x(3)}" y="372" width="${x(12)-x(3)}" height="18" fill="#3fa34d"/>
+    <rect x="${x(12)}" y="372" width="${x(25)-x(12)}" height="18" fill="#1f7a8c"/><rect x="${x(25)}" y="372" width="${x(30)-x(25)}" height="18" fill="#e0574f"/>
+    ${[0,3,12,25,30].map(v=>`<text x="${x(v)}" y="412" text-anchor="middle" font-size="14" fill="#14525e" font-weight="700">${v}</text>`).join('')}
+    <text x="${x(30)}" y="434" text-anchor="end" font-size="12" fill="#5c6f7a">風速（公尺／秒）</text>
+    <polygon id="mk7" points="0,0 -10,-16 10,-16" fill="#14525e"/></svg>`;
+  },
+  after(){ PAGE_STATE.r7 = addRotor('t7', 0); },
+  ctrl(box){
+    box.innerHTML = `<label style="font-weight:700">風速 <span id="v7">8</span> 公尺／秒</label><input type="range" id="sl7" min="0" max="30" value="8">`;
+    const set = v => {
+      $('#v7').textContent = v;
+      $('#mk7').setAttribute('transform', `translate(${80 + v / 30 * 640} 370)`);
+      const z = v < 3 ? 0 : v < 12 ? 1 : v <= 25 ? 2 : 3;
+      PAGE_STATE.r7.target = [v * 0.3, v * 0.9, 11, 0][z];
+      $('#wind7').style.display = v < 1 ? 'none' : ''; $('#scenebox').style.setProperty('--wd', Math.max(0.4, 3.5 - v * 0.12) + 's');
+      $('#stop7').style.display = z === 3 ? '' : 'none';
+      const say = [['風太小了，休息一下','還沒到啟動風速'],['開始發電囉！','風越大，電越多'],['全力發電中！','已經是最大發電量'],['颱風來了，煞車停機！','保護葉片和機器']][z];
+      $('#say7').textContent = say[0]; $('#say7b').textContent = say[1];
+    };
+    $('#sl7').oninput = e => set(+e.target.value); set(8);
+  }
+},
+{ // 8
+  t: '8. 風機要蓋在哪裡？',
+  p: `<p>風機最喜歡<b>又大又穩</b>的風。城市裡高樓會擋風、把風弄亂；山谷裡風太小；<b>海上</b>什麼都沒擋，風最好！</p><p>台灣海峽冬天吹著強勁的<b>東北季風</b>，苗栗竹南外海的「海洋風電」是<b>台灣第一座商業規模的離岸風場</b>。</p>`,
+  hint: '👆 點三個地方和天上的鳥，看看哪裡適合蓋風機。',
+  hs: [[16,58,'城市','❌ <b>城市</b>：高樓擋住風，還會讓風變得亂七八糟（亂流），而且離住家太近。'],[50,64,'山谷','❌ <b>山谷底</b>：四周的山把風擋住，風太小，風機轉不起來。'],[84,58,'海上','✅ <b>海上</b>：沒有東西擋風，風又大又穩。塔架蓋得高，還能吃到更強的風。'],[78,14,'候鳥','⚠️ <b>候鳥</b>：就算風很大，也要避開候鳥飛行和休息的地方，保護生態。']],
+  scene: () => `${svgOpen()}${skyBg()}
+    <rect x="0" y="330" width="266" height="120" fill="#b9c3c8"/>
+    ${[[20,180,50],[78,120,44],[130,210,40],[178,150,48],[230,230,30]].map(([x,y,w])=>`<rect x="${x}" y="${y}" width="${w}" height="${330-y}" fill="#7d93a3"/>${[0,1,2,3,4,5].filter(i=>y+16+i*24<320).map(i=>`<rect x="${x+8}" y="${y+12+i*24}" width="${w-16}" height="10" fill="#cfe8f6"/>`).join('')}`).join('')}
+    ${[160,230,290].map((y,i)=>`<path d="M10 ${y} q20 -20 40 0 t40 0 q15 25 -10 20" stroke="#e0574f" stroke-width="4" fill="none" stroke-linecap="round" class="bob" style="animation-delay:${i*.3}s"/>`).join('')}
+    <path d="M266 330 L266 120 L340 170 L400 300 L460 170 L533 110 L533 330Z" fill="#6aa86b"/><path d="M266 330 L400 300 L533 330Z" fill="#8fc17a"/>
+    <path d="M380 270 h16 M404 270 l-8 -5 m8 5 l-8 5" stroke="#1f7a8c" stroke-width="3" fill="none"/>
+    <rect x="533" y="300" width="267" height="150" fill="#3e9bb0"/>
+    ${turbineAt('t8a',560,190,.32)}${turbineAt('t8b',640,170,.36)}${turbineAt('t8c',720,200,.3)}
+    ${windField([130,200,260],533,800,'#fff')}
+    <g class="bird">${[[600,60],[625,72],[650,60],[580,72]].map(([x,y])=>`<path d="M${x} ${y} q8 -10 16 0 q8 -10 16 0" stroke="#333" stroke-width="3" fill="none"/>`).join('')}</g>
+    <line x1="266" y1="0" x2="266" y2="${H}" stroke="#fff" stroke-width="4"/><line x1="533" y1="0" x2="533" y2="${H}" stroke="#fff" stroke-width="4"/>
+    ${label(133,30,'🏙️ 城市')}${label(400,30,'⛰️ 山谷')}${label(666,30,'🌊 海上')}</svg>`,
+  after(){ addRotor('t8a', 3); addRotor('t8b', 3.4); addRotor('t8c', 2.8); }
+},
+{ // 9
+  t: '9. 風力發電的好處與難題',
+  p: `<p>風力發電有很多<b>好處</b>：發電時不燃燒東西、不排放二氧化碳，風也用不完。</p><p>可是也有<b>難題</b>：沒有風就發不了電，還要注意噪音、鳥類和很高的建造費用。所以要和其他發電方式<b>互相搭配</b>。</p>`,
+  hint: '👆 翻開下面的卡片，看看是好處還是難題。',
+  hs: [[25,40,'有風','☀️ 有風的時候：風機轉呀轉，產生乾淨的電。'],[75,40,'沒風','🌙 沒風的時候：風機停下來，就發不了電，需要其他電力或儲能幫忙。']],
+  scene: () => `${svgOpen()}<rect width="400" height="${H}" fill="#bfe3f5"/><rect x="400" width="400" height="${H}" fill="#2b3a63"/>
+    ${sun(70,70,28)}<circle cx="720" cy="70" r="26" fill="#f4f1c9"/><circle cx="732" cy="62" r="22" fill="#2b3a63"/>
+    <rect y="350" width="400" height="100" fill="#7cc46b"/><rect x="400" y="350" width="400" height="100" fill="#3b6b3f"/>
+    ${windField([110,170,230],-40,240)}
+    ${turbineAt('t9a',90,20,.82)}${turbineAt('t9b',490,20,.82)}
+    ${label(200,410,'有風：轉轉轉，發電！','#fff','#14525e')}${label(600,410,'沒風：停下來休息','#fff','#2b3a63')}
+    <text x="650" y="150" font-size="34">💤</text></svg>`,
+  after(){ addRotor('t9a', 6); addRotor('t9b', 0); },
+  ctrl(box){
+    const cards = [['🌍','不排放二氧化碳',1,'發電時不燃燒，幾乎不排放溫室氣體。'],['♻️','風用不完',1,'只要太陽照地球，就會一直有風。'],['💰','不用買燃料',1,'風是免費的，不用進口煤或天然氣。'],['🍃','沒風就停',0,'發電量跟著天氣變，不夠穩定。'],['🐦','可能撞到鳥',0,'要避開候鳥的飛行路線。'],['🔊','運轉有聲音',0,'要跟住家保持距離。']];
+    box.innerHTML = `<div class="flips">${cards.map((c,i)=>`<button class="flip" data-i="${i}"><div style="font-size:1.6rem">${c[0]}</div>${c[1]}<small>點我翻牌</small></button>`).join('')}</div>`;
+    box.querySelectorAll('.flip').forEach(b => b.onclick = () => {
+      const c = cards[b.dataset.i]; b.classList.add(c[2] ? 'pro' : 'con');
+      b.innerHTML = `<div style="font-size:1.6rem">${c[2] ? '👍' : '🤔'}</div>${c[2] ? '好處' : '難題'}：${c[1]}<small>${c[3]}</small>`;
+    });
+  }
+},
+{ // 10
+  t: '10. 準備好當小工程師了！',
+  p: `<p>小安戴上了自己的安全帽：「我知道了！<b>風</b>來自太陽、<b>葉片</b>接住風、<b>發電機</b>把轉動變成電，還要選對<b>地方</b>蓋風機！」</p><p>風伯伯說：「很好！現在去挑戰 6 道關卡，證明你學會了吧！」</p>`,
+  hint: '🎉 你完成全部探究任務了！闖關時忘記的話，每一關都有「📖 複習」按鈕。',
+  hs: [[45,50,'小安','你也可以像小安一樣，用學到的知識幫小鎮蓋風機！']],
+  scene: () => `${svgOpen()}${skyBg('#ffe8c2','#fff7e8')}${sun(400,80,40)}
+    <rect y="360" width="${W}" height="90" fill="#7cc46b"/>
+    ${turbineAt('t10a',40,80,.7)}${turbineAt('t10b',560,60,.75)}
+    ${kid(360,420,1.15,true)}${grandpa(470,420,1.05)}
+    ${[[120,60,'#ff6b6b'],[300,40,'#4cc9f0'],[520,50,'#80ed99'],[680,40,'#ffd166'],[220,110,'#ffd166'],[600,120,'#ff6b6b']].map(([x,y,c],i)=>`<rect x="${x}" y="${y}" width="10" height="16" fill="${c}" class="bob" style="animation-delay:${i*.25}s" transform="rotate(${i*25} ${x} ${y})"/>`).join('')}</svg>`,
+  after(){ addRotor('t10a', 3); addRotor('t10b', 3.5); },
+  ctrl(box){ box.innerHTML = `<button class="btn sun" id="toQuest" style="font-size:1.1rem">🏁 我學會了，開始闖關！</button>`; $('#toQuest').onclick = () => { closeModal(); openLevel(1); }; }
+},
+];
+
+/* --- 先猜、再試、後解釋（Predict–Observe–Explain）+ 每單元不同互動類型 --- */
+const POE = [
+  {kind:'吹吹看', hook:'看不見的風，真的能推動東西嗎？', pq:{q:'風車玩具什麼時候轉得最快？', o:['沒有風的時候','風很小的時候','風很大的時候'], a:2}},
+  {kind:'切換模擬', hook:'在海邊玩的時候，白天的風是從哪裡吹過來的？', pq:{q:'你猜白天海邊的風怎麼吹？', o:['從海吹向陸地','從陸地吹向海','從天上直直往下吹'], a:0}},
+  {kind:'拆解探索', hook:'風機那麼大，哪一個部位才是真正在「發電」的？', pq:{q:'你猜哪裡在發電？', o:['葉片','機艙裡面','塔架'], a:1}},
+  {kind:'因果連動', hook:'如果小鎮只靠這一座風機供電，沒有風的時候會怎樣？', pq:{q:'沒有風時，家裡的燈會？', o:['照樣亮','不會亮','變得更亮'], a:1}},
+  {kind:'動手模擬', hook:'發電機裡沒有燃料，電到底是從哪裡跑出來的？', pq:{q:'讓磁鐵轉得更快，燈泡會？', o:['變暗','一樣亮','變得更亮'], a:2}},
+  {kind:'預測挑戰', hook:'風速變成 2 倍，風的能量會變成幾倍？', pq:{q:'先猜一個數字！', o:['2 倍','4 倍','8 倍'], a:2}},
+  {kind:'極限測試', hook:'颱風來的時候風最大，風機是不是發最多電？', pq:{q:'風速超過每秒 25 公尺時，風機會？', o:['發出最多電','停機保護自己','轉得更快'], a:1}},
+  {kind:'比較決策', hook:'如果你是一座風機，你會想住在哪裡？', pq:{q:'哪裡最適合蓋風機？', o:['城市高樓之間','山谷底部','海上'], a:2}},
+  {kind:'翻牌思辨', hook:'風力發電這麼好，是不是完全沒有缺點？', pq:{q:'你覺得呢？', o:['完全沒有缺點','有好處，也有難題','壞處比好處多很多'], a:1}},
+  {kind:'學習地圖', t:'10. 學習地圖：五個大重點', hook:'恭喜完成 9 個探究任務！來整理一下學到的東西。',
+   p:`<p>① <b>風</b>來自太陽：陸地和海冷熱不同，空氣流動就是風。</p><p>② <b>構造</b>：葉片、輪轂、機艙（主軸、齒輪箱、發電機）、塔架、基礎。</p><p>③ <b>能量轉換</b>：風的動能 → 轉動 → 電磁感應產生電能 → 送到家。</p><p>④ <b>風速</b>：風速 2 倍、能量約 8 倍；太小不發電，颱風會停機。</p><p>⑤ <b>選址與取捨</b>：海上風大又穩，但要顧及生態、噪音和成本。</p>`},
+];
+PAGES.forEach((pg, i) => Object.assign(pg, POE[i]));
+
+/* --- 探究任務控制 --- */
+let pageNo = 1, PAGE_STATE = {}, pageAbort = new AbortController();
+book.pred = book.pred || {};
+function renderScene(st){
+  const pg = PAGES[pageNo - 1];
+  $('#sceneSvg').innerHTML = pg.scene(st);
+  if (pg.after) pg.after(st || {});
+}
+function bubble(html){ $('#bubble').innerHTML = html; }
+function openBook(n){
+  stopSpeak();
+  pageNo = Math.max(1, Math.min(PAGES.length, n)); PAGE_STATE = {};
+  pageAbort.abort(); pageAbort = new AbortController();
+  $('#home').classList.add('hide'); $('#level').classList.add('hide'); $('#book').classList.remove('hide');
+  const pg = PAGES[pageNo - 1];
+  $('#scenebox').style.removeProperty('--wd'); $('#scenebox').style.removeProperty('--fd');
+  renderScene();
+  $('#pTitle').innerHTML = `${pg.t}<span class="kind">${pg.kind}</span>`;
+  $('#pHook').textContent = pg.hook; $('#pBody').innerHTML = pg.p; $('#pHint').textContent = pg.hint || '';
+  bubble('<span class="hint">👆 點畫面上發光的圓圈，這裡會出現說明。</span>');
+  const setPhase = ph => {
+    $('#poe').innerHTML = pg.pq ? ['🤔 先猜猜','🔬 動手試','💡 想一想'].map((s, i) => `<span class="${i < ph ? 'done' : i === ph ? 'on' : ''}">${s}</span>`).join('') : '';
+    $('#book').classList.toggle('locked', ph === 0);
+    $('#book').classList.toggle('phase1', ph === 1);
+    $('#afterPred').classList.toggle('hide', ph === 0);
+  };
+  if (pg.pq){
+    const prior = book.pred[pageNo];
+    $('#predict').innerHTML = `<div class="q" style="border:none;padding-top:0"><div class="qt">🤔 ${pg.pq.q}</div><div class="opts">${pg.pq.o.map((o, i) => `<button class="opt" data-i="${i}">${o}</button>`).join('')}</div><div id="predFb"></div></div>`;
+    const opts = $('#predict').querySelectorAll('.opt');
+    // 先只記下預測，不公布對錯；動手操作後才揭曉
+    const reveal = pick => {
+      opts.forEach((b, i) => { b.classList.remove('sel'); if (i === pg.pq.a) b.classList.add('right'); else if (i === pick) b.classList.add('wrong'); });
+      $('#predFb').innerHTML = `<div class="expl">${pick === pg.pq.a ? '🎯 你一開始就猜對了：「' + pg.pq.o[pick] + '」！看看下面的重點，確認你的理由。' : '你一開始猜「' + pg.pq.o[pick] + '」，實驗結果是「' + pg.pq.o[pg.pq.a] + '」。想法被推翻，正是學到新東西的時候！'}</div>`;
+      setPhase(2);
+    };
+    const showPick = (pick, explored) => {
+      opts.forEach((b, i) => { b.disabled = true; b.classList.toggle('sel', i === pick); });
+      if (explored){ reveal(pick); return; }
+      $('#predFb').innerHTML = `<div class="expl">你猜「${pg.pq.o[pick]}」。現在動手試試看，看看你猜得對不對！</div>`;
+      setPhase(1);
+      const go = () => { pageAbort.abort(); reveal(pick); book.pred['x' + pageNo] = 1; saveBook(); };
+      $('#pageCtrl').addEventListener('pointerdown', go, {signal: pageAbort.signal});
+      $('#hsLayer').addEventListener('click', go, {signal: pageAbort.signal});
+    };
+    opts.forEach(b => b.onclick = () => {
+      const pick = +b.dataset.i; book.pred[pageNo] = pick; saveBook(); showPick(pick, false);
+      if (reading) speak($('#predFb').innerText);
+    });
+    if (prior !== undefined) showPick(prior, !!book.pred['x' + pageNo]); else setPhase(0);
+  } else { $('#predict').innerHTML = ''; setPhase(2); }
+  $('#hsLayer').innerHTML = pg.hs.map((h, i) => `<button class="hs" style="left:${h[0]}%;top:${h[1]}%" data-i="${i}" aria-label="${h[2]}">${i + 1}</button>`).join('');
+  $('#hsLayer').querySelectorAll('.hs').forEach(b => b.onclick = () => {
+    const h = pg.hs[b.dataset.i];
+    $('#hsLayer').querySelectorAll('.hs').forEach(x => x.classList.remove('cur'));
+    b.classList.add('seen', 'cur'); bubble(`<b>${h[2]}</b>｜${h[3]}`);
+    if (reading) speak(h[3]);
+  });
+  const ctrl = $('#pageCtrl'); ctrl.innerHTML = ''; ctrl.style.display = pg.ctrl ? '' : 'none';
+  if (pg.ctrl) pg.ctrl(ctrl);
+  book.max = Math.max(book.max, pageNo);
+  if (pageNo === PAGES.length) book.done = true;
+  saveBook();
+  $('#dots').innerHTML = PAGES.map((_, i) => `<button class="${i + 1 === pageNo ? 'on' : ''} ${i < book.max ? 'read' : ''}" data-p="${i + 1}" aria-label="第 ${i + 1} 頁">${i + 1}</button>`).join('');
+  $('#dots').querySelectorAll('button').forEach(b => b.onclick = () => openBook(+b.dataset.p));
+  $('#prevP').disabled = pageNo === 1;
+  $('#nextP').textContent = pageNo === PAGES.length ? '🏁 開始闖關' : '下一頁 ▶';
+  if (reading) speak(pg.t + '。' + pg.hook + (pg.pq ? pg.pq.q + pg.pq.o.join('、') : ''));
+  window.scrollTo(0, 0);
+}
+$('#prevP').onclick = () => openBook(pageNo - 1);
+$('#nextP').onclick = () => pageNo === PAGES.length ? openLevel(1) : openBook(pageNo + 1);
+$('#bookHome').onclick = renderHome;
+
+/* --- 朗讀 --- */
+let reading = false;
+function speak(text){
+  if (!('speechSynthesis' in window)) return;
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text.replace(/[①②③④⑤👆🎉]/g, ''));
+  u.lang = 'zh-TW'; u.rate = 0.9;
+  const v = speechSynthesis.getVoices().find(v => /zh[-_](TW|Hant)/i.test(v.lang)) || speechSynthesis.getVoices().find(v => /^zh/i.test(v.lang));
+  if (v) u.voice = v;
+  speechSynthesis.speak(u);
+}
+function stopSpeak(){ if ('speechSynthesis' in window) speechSynthesis.cancel(); }
+$('#readBtn').onclick = () => {
+  if (!('speechSynthesis' in window)){ $('#readBtn').textContent = '🔇 此瀏覽器不支援朗讀'; return; }
+  reading = !reading; $('#readBtn').textContent = reading ? '⏹ 停止朗讀' : '🔊 讀給我聽';
+  reading ? speak(PAGES[pageNo - 1].t + '。' + PAGES[pageNo - 1].hook) : stopSpeak();
+};
+
 $('#modal').onclick = e => { if (e.target.id === 'modal') closeModal(); };
-renderHome();
+const startPage = (location.hash.match(/^#p(\d+)$/) || [])[1];
+startPage ? openBook(+startPage) : renderHome();
 </script>
 </body>
 </html>
